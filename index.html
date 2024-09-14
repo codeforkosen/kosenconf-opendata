@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>高専カンファレンスオープンデータ</title>
+</head><body>
+<h1>高専カンファレンスオープンデータ</h1>
+
+<div class=times>開催回数<span id=spantimes>-</span>回</div>
+
+
+<script type="module" src="https://code4sabae.github.io/js/csv-viewer.js"></script>
+<csv-viewer src="./kosenconf.csv"></csv-viewer>
+
+<hr>
+DATA: <a href=https://kosenconf.jp/>高専カンファレンス Wiki</a> → <a href=kosenconf.csv>kosenconf.csv</a><br>
+<a href=https://github.com/codeforkosen/kosenconf-opendata/>src on GitHub</a><br>
+
+
+<style>
+body {
+  font-family: sans-serif;
+}
+h1 {
+  text-align: center;
+}
+.times {
+  text-align: center;
+  font-size: 300%;
+  margin: 1em 1em;
+}
+
+csv-viewer > div {
+  overflow: scroll;
+}
+csv-viewer th, csv-viewer td {
+  font-size: 90%;
+  white-space: nowrap;
+  border: 1px solid black;
+  padding: .1em .2em;
+}
+table {
+  border-collapse: collapse;
+}
+a {
+  color: gray !important;
+}
+</style>
+
+<script type="module">
+import { CSV } from "https://js.sabae.cc/CSV.js";
+
+const list = await CSV.fetchJSON("./kosenconf.csv");
+spantimes.textContent = list.length;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+# kosenconf-opendata
+ 
