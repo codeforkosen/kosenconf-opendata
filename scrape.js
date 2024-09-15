@@ -28,14 +28,16 @@ for (const link of links) {
   const html = await fetchOrLoad(link);
   const dom = HTMLParser.parse(html);
   const tbl = dom.querySelector(".style_table");
-  const json = table2json(tbl);
+  const json = table2json(tbl, "タイトル");
   //console.log(csv, json);
   for (const item of json) {
     if (!item.タグ) continue;
     if (list.find(i => i.タグ == item.タグ)) continue;
+    if (!item.URL) item.URL = "https://kosenconf.jp/?" + item.タグ;
     list.push(item);
   }
   await sleep(100);
+  //break;
 }
 
 await Deno.writeTextFile(fn, CSV.stringify(list));
