@@ -34,6 +34,7 @@ for (const link of links) {
     if (!item.タグ) continue;
     if (list.find(i => i.タグ == item.タグ)) continue;
     if (!item.URL) item.URL = "https://kosenconf.jp/?" + item.タグ;
+    item.中止フラグ = item.タイトル.endsWith("中止") ? 1 : 0;
     list.push(item);
   }
   await sleep(100);
